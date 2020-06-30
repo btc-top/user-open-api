@@ -2292,6 +2292,70 @@
 <p>举例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;running&#34;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="nt">&#34;stopped&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&#34;invalid&#34;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="请求方式-1">请求方式</h2>
+<p>统一使用 HTTP 请求（基于 HTTP1.0/1.1 标准）的 GET 或 POST 方法。</p>
+<h2 id="安全要求-1">安全要求</h2>
+<p>如果在公网则请求及响应数据采用 HTTPS 加密传输，内网可以使用 HTTP。</p>
+<h2 id="请求格式-1">请求格式</h2>
+<p>数据采用 JSON 格式，请注意在 HTTP 请求的 header 中设置：<code>Content-Type: application/json</code>。</p>
+<h2 id="授权机制-1">授权机制</h2>
+<h3 id="client-端-1">client 端</h3>
+<p>在 HTTP header 中添加 Authorization 字段，其值为根据颁发的 clientId 和 secretKey 生成的 jwt token 值。<br />
+其中 jwt token 的 playload 格式为：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clientId</td>
+<td>string</td>
+<td>从授权处获取的 clientId 编号</td>
+</tr>
+<tr>
+<td>rnd</td>
+<td>number</td>
+<td>为了防止重放攻击使用的随机数，不得小于 8 位</td>
+</tr>
+<tr>
+<td>exp</td>
+<td>unix timestamp</td>
+<td>该 jwt token 的过期时间时间戳，建议比当前时间大 3 到 5 分钟，如果对安全要求高的可以缩小范围，不建议太大了。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="server-端-1">server 端</h3>
+<p>验证 client 端发送的 HTTP 请求中 header 里面的 Authorization 字段内容是否为合法授权的 jwt token。</p>
+<h3 id="举例-1">举例</h3>
+<p>client 端发送一个请求给 server，并在其 http header 中加上有效的 jwt token：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
@@ -2316,121 +2380,31 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
-  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;running&#34;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
-    <span class="nt">&#34;stopped&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&#34;invalid&#34;</span><span class="p">:</span> <span class="mi">0</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="err">```</span><span class="p">[</span><span class="err">TOC</span><span class="p">]</span>
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">_</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lodash&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;jsonwebtoken&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;request-promise-native&#39;</span><span class="p">);</span>
 
-<span class="err">##</span> <span class="err">请求方式</span>
-
-<span class="err">统一使用</span> <span class="err">HTTP</span> <span class="err">请求（基于</span> <span class="err">HTTP</span><span class="mf">1.0</span><span class="err">/</span><span class="mf">1.1</span> <span class="err">标准）的</span> <span class="err">GET</span> <span class="err">或</span> <span class="err">POST</span> <span class="err">方法。</span>
-
-<span class="err">##</span> <span class="err">安全要求</span>
-
-<span class="err">如果在公网则请求及响应数据采用</span> <span class="err">HTTPS</span> <span class="err">加密传输，内网可以使用</span> <span class="err">HTTP。</span>
-
-<span class="err">##</span> <span class="err">请求格式</span>
-
-<span class="err">数据采用</span> <span class="err">JSON</span> <span class="err">格式，请注意在</span> <span class="err">HTTP</span> <span class="err">请求的</span> <span class="err">header</span> <span class="err">中设置：`Content-Type:</span> <span class="err">application/json`。</span>
-
-<span class="err">##</span> <span class="err">授权机制</span>
-
-<span class="err">###</span> <span class="err">client</span> <span class="err">端</span>
-
-<span class="err">在</span> <span class="err">HTTP</span> <span class="err">header</span> <span class="err">中添加</span> <span class="err">Authorization</span> <span class="err">字段，其值为根据颁发的</span> <span class="err">clientId</span> <span class="err">和</span> <span class="err">secretKey</span> <span class="err">生成的</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">值。</span>
-<span class="err">其中</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">的</span> <span class="err">playload</span> <span class="err">格式为：</span>
-
-<span class="err">|</span> <span class="err">字段</span>     <span class="err">|</span> <span class="err">类型</span>           <span class="err">|</span> <span class="err">描述</span>                                                                                                        <span class="err">|</span>
-<span class="err">|</span> <span class="err">--------</span> <span class="err">|</span> <span class="err">--------------</span> <span class="err">|</span> <span class="err">-----------------------------------------------------------------------------------------------------------</span> <span class="err">|</span>
-<span class="err">|</span> <span class="err">clientId</span> <span class="err">|</span> <span class="err">string</span>         <span class="err">|</span> <span class="err">从授权处获取的</span> <span class="err">clientId</span> <span class="err">编号</span>                                                                                <span class="err">|</span>
-<span class="err">|</span> <span class="err">rnd</span>      <span class="err">|</span> <span class="err">number</span>         <span class="err">|</span> <span class="err">为了防止重放攻击使用的随机数，不得小于</span> <span class="mi">8</span> <span class="err">位</span>                                                                 <span class="err">|</span>
-<span class="err">|</span> <span class="err">exp</span>      <span class="err">|</span> <span class="err">unix</span> <span class="err">timestamp</span> <span class="err">|</span> <span class="err">该</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">的过期时间时间戳，建议比当前时间大</span> <span class="mi">3</span> <span class="err">到</span> <span class="mi">5</span> <span class="err">分钟，如果对安全要求高的可以缩小范围，不建议太大了。</span> <span class="err">|</span>
-
-<span class="err">###</span> <span class="err">server</span> <span class="err">端</span>
-
-<span class="err">验证</span> <span class="err">client</span> <span class="err">端发送的</span> <span class="err">HTTP</span> <span class="err">请求中</span> <span class="err">header</span> <span class="err">里面的</span> <span class="err">Authorization</span> <span class="err">字段内容是否为合法授权的</span> <span class="err">jwt</span> <span class="err">token。</span>
-
-<span class="err">###</span> <span class="err">举例</span>
-
-<span class="err">client</span> <span class="err">端发送一个请求给</span> <span class="err">server，并在其</span> <span class="err">http</span> <span class="err">header</span> <span class="err">中加上有效的</span> <span class="err">jwt</span> <span class="err">token：</span>
-
-<span class="err">```javascript</span>
-<span class="err">const</span> <span class="err">_</span> <span class="err">=</span> <span class="err">require(&#39;lodash&#39;);</span>
-<span class="err">const</span> <span class="err">jwt</span> <span class="err">=</span> <span class="err">require(&#39;jsonwebtoken&#39;);</span>
-<span class="err">const</span> <span class="err">request</span> <span class="err">=</span> <span class="err">require(&#39;request-promise-native&#39;);</span>
-
-<span class="err">const</span> <span class="err">url</span> <span class="err">=</span> <span class="err">&#39;http://service_url&#39;;</span> <span class="err">//</span> <span class="err">server端api的URL地址</span>
-<span class="err">const</span> <span class="err">clientId</span> <span class="err">=</span> <span class="err">&#39;xxxxxxxxx&#39;;</span>     <span class="err">//</span> <span class="err">授权处颁发的clientId</span>
-<span class="err">const</span> <span class="err">secretKey</span> <span class="err">=</span> <span class="err">&#39;xxxxx&#39;;</span>        <span class="err">//</span> <span class="err">授权处颁发的secretKey，注意保密</span>
-
-<span class="err">const</span> <span class="err">random</span> <span class="err">=</span> <span class="err">_.random(</span><span class="mi">1000000000</span><span class="err">,</span> <span class="mi">9999999999</span><span class="err">);</span>    <span class="err">//</span> <span class="err">随机数</span>
-<span class="err">const</span> <span class="err">exp</span> <span class="err">=</span> <span class="err">Date.now()</span> <span class="err">/</span> <span class="mi">1000</span> <span class="err">+</span> <span class="mi">180</span><span class="err">;</span>                 <span class="err">//</span> <span class="err">有效期</span><span class="mi">180</span><span class="err">秒</span>
-<span class="err">const</span> <span class="err">playload</span> <span class="err">=</span> <span class="p">{</span> <span class="err">clientId:</span> <span class="err">clientId,</span> <span class="err">rnd:</span> <span class="err">random,</span> <span class="err">exp:</span> <span class="err">exp</span> <span class="p">}</span><span class="err">;</span>    <span class="err">//</span> <span class="err">jwt</span> <span class="err">token的playload内容</span>
-
-<span class="err">const</span> <span class="err">parameters</span> <span class="err">=</span> <span class="p">{}</span><span class="err">;</span> <span class="err">//</span> <span class="err">接口请求参数内容</span>
-
-<span class="err">const</span> <span class="err">token</span> <span class="err">=</span> <span class="err">jwt.sign(playload,</span> <span class="err">secretKey);</span>    <span class="err">//</span> <span class="err">产生授权jwt</span> <span class="err">token</span>
-
-<span class="err">request.post(url,</span> <span class="p">{</span>
-    <span class="err">headers:</span> <span class="err">{</span> <span class="err">Authorization:</span> <span class="err">token</span> <span class="p">}</span><span class="err">,</span>         <span class="err">//</span> <span class="err">在client的http</span> <span class="err">header中设置Authorization字段，其值为前面产生的jwt</span> <span class="err">token</span>
-    <span class="err">body:</span> <span class="err">parameters,</span>
-    <span class="err">json:</span> <span class="kc">true</span><span class="err">,</span>
-<span class="err">}).then(function</span> <span class="err">()</span> <span class="p">{</span>
-    <span class="err">......</span>
-<span class="p">}</span><span class="err">);</span>
+<span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;http://service_url&#39;</span><span class="p">;</span> <span class="c1">// server端api的URL地址
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">clientId</span> <span class="o">=</span> <span class="s1">&#39;xxxxxxxxx&#39;</span><span class="p">;</span>     <span class="c1">// 授权处颁发的clientId
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">secretKey</span> <span class="o">=</span> <span class="s1">&#39;xxxxx&#39;</span><span class="p">;</span>        <span class="c1">// 授权处颁发的secretKey，注意保密
+</span><span class="c1"></span>
+<span class="kr">const</span> <span class="nx">random</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">random</span><span class="p">(</span><span class="mi">1000000000</span><span class="p">,</span> <span class="mi">9999999999</span><span class="p">);</span>    <span class="c1">// 随机数
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">exp</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">+</span> <span class="mi">180</span><span class="p">;</span>                 <span class="c1">// 有效期180秒
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">playload</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">clientId</span><span class="o">:</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">rnd</span><span class="o">:</span> <span class="nx">random</span><span class="p">,</span> <span class="nx">exp</span><span class="o">:</span> <span class="nx">exp</span> <span class="p">};</span>    <span class="c1">// jwt token的playload内容
+</span><span class="c1"></span>
+<span class="kr">const</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 接口请求参数内容
+</span><span class="c1"></span>
+<span class="kr">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">jwt</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">playload</span><span class="p">,</span> <span class="nx">secretKey</span><span class="p">);</span>    <span class="c1">// 产生授权jwt token
+</span><span class="c1"></span>
+<span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span> <span class="nx">Authorization</span><span class="o">:</span> <span class="nx">token</span> <span class="p">},</span>         <span class="c1">// 在client的http header中设置Authorization字段，其值为前面产生的jwt token
+</span><span class="c1"></span>    <span class="nx">body</span><span class="o">:</span> <span class="nx">parameters</span><span class="p">,</span>
+    <span class="nx">json</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="p">......</span>
+<span class="p">});</span>
 
 </code></pre></td></tr></table>
 </div>
@@ -3637,6 +3611,16 @@
             <li><a href="#获取用户当前矿机总体情况">获取用户当前矿机总体情况</a></li>
           </ul>
         </li>
+      </ul>
+    </li>
+    <li><a href="#请求方式-1">请求方式</a></li>
+    <li><a href="#安全要求-1">安全要求</a></li>
+    <li><a href="#请求格式-1">请求格式</a></li>
+    <li><a href="#授权机制-1">授权机制</a>
+      <ul>
+        <li><a href="#client-端-1">client 端</a></li>
+        <li><a href="#server-端-1">server 端</a></li>
+        <li><a href="#举例-1">举例</a></li>
       </ul>
     </li>
     <li><a href="#接口通用说明-1">接口通用说明</a>
