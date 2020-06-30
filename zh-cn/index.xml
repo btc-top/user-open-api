@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>&amp;copy;{year}, BTC.TOP All Rights Reserved</copyright>
-    <lastBuildDate>Fri, 08 May 2020 09:03:16 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2020 08:56:16 +0800</lastBuildDate>
     
         <atom:link href="https://btc-top.github.io/user-open-api/zh-cn/index.xml" rel="self" type="application/rss+xml" />
     
@@ -17,7 +17,7 @@
       <item>
         <title>用户Open API文档</title>
         <link>https://btc-top.github.io/user-open-api/zh-cn/</link>
-        <pubDate>Fri, 08 May 2020 09:03:16 +0800</pubDate>
+        <pubDate>Tue, 30 Jun 2020 08:56:16 +0800</pubDate>
         
         <guid>https://btc-top.github.io/user-open-api/zh-cn/</guid>
         <description>请求方式 统一使用 HTTP 请求（基于 HTTP1.0/1.1 标准）的 GET 或 POST 方法。

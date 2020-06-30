@@ -970,8 +970,8 @@
 
     <meta name="description" content="" />
 <meta name="keywords" content="">
-<meta name="created" content="2020-05-08T09:03:16&#43;0800">
-<meta name="modified" content="2020-05-08T09:03:16&#43;0800">
+<meta name="created" content="2020-06-30T08:56:16&#43;0800">
+<meta name="modified" content="2020-06-30T08:56:16&#43;0800">
 
 
 <meta property="og:site_name" content="API文档">
@@ -1007,8 +1007,8 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "headline": "用户Open API文档",
-    "datePublished": "2020-05-08T09:03:16+08:00",
-    "dateModified": "2020-05-08T09:03:16+08:00",
+    "datePublished": "2020-06-30T08:56:16+08:00",
+    "dateModified": "2020-06-30T08:56:16+08:00",
     "url" : "https://btc-top.github.io/user-open-api/zh-cn/",
     "description": "请求方式 统一使用 HTTP 请求（基于 HTTP1.0/1.1 标准）的 GET 或 POST 方法。 安全要求 如果在公网则请求及响应数据采用 HTTPS 加密传输，内网可以使用 HTTP。 请求格式 数据采用 JSON 格式，请注意在 HTTP 请求的 header 中设置：Content-Type: …",
     "mainEntityOfPage": {
@@ -2292,6 +2292,903 @@
 <p>举例：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;running&#34;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="nt">&#34;stopped&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&#34;invalid&#34;</span><span class="p">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="err">```</span><span class="p">[</span><span class="err">TOC</span><span class="p">]</span>
+
+<span class="err">##</span> <span class="err">请求方式</span>
+
+<span class="err">统一使用</span> <span class="err">HTTP</span> <span class="err">请求（基于</span> <span class="err">HTTP</span><span class="mf">1.0</span><span class="err">/</span><span class="mf">1.1</span> <span class="err">标准）的</span> <span class="err">GET</span> <span class="err">或</span> <span class="err">POST</span> <span class="err">方法。</span>
+
+<span class="err">##</span> <span class="err">安全要求</span>
+
+<span class="err">如果在公网则请求及响应数据采用</span> <span class="err">HTTPS</span> <span class="err">加密传输，内网可以使用</span> <span class="err">HTTP。</span>
+
+<span class="err">##</span> <span class="err">请求格式</span>
+
+<span class="err">数据采用</span> <span class="err">JSON</span> <span class="err">格式，请注意在</span> <span class="err">HTTP</span> <span class="err">请求的</span> <span class="err">header</span> <span class="err">中设置：`Content-Type:</span> <span class="err">application/json`。</span>
+
+<span class="err">##</span> <span class="err">授权机制</span>
+
+<span class="err">###</span> <span class="err">client</span> <span class="err">端</span>
+
+<span class="err">在</span> <span class="err">HTTP</span> <span class="err">header</span> <span class="err">中添加</span> <span class="err">Authorization</span> <span class="err">字段，其值为根据颁发的</span> <span class="err">clientId</span> <span class="err">和</span> <span class="err">secretKey</span> <span class="err">生成的</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">值。</span>
+<span class="err">其中</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">的</span> <span class="err">playload</span> <span class="err">格式为：</span>
+
+<span class="err">|</span> <span class="err">字段</span>     <span class="err">|</span> <span class="err">类型</span>           <span class="err">|</span> <span class="err">描述</span>                                                                                                        <span class="err">|</span>
+<span class="err">|</span> <span class="err">--------</span> <span class="err">|</span> <span class="err">--------------</span> <span class="err">|</span> <span class="err">-----------------------------------------------------------------------------------------------------------</span> <span class="err">|</span>
+<span class="err">|</span> <span class="err">clientId</span> <span class="err">|</span> <span class="err">string</span>         <span class="err">|</span> <span class="err">从授权处获取的</span> <span class="err">clientId</span> <span class="err">编号</span>                                                                                <span class="err">|</span>
+<span class="err">|</span> <span class="err">rnd</span>      <span class="err">|</span> <span class="err">number</span>         <span class="err">|</span> <span class="err">为了防止重放攻击使用的随机数，不得小于</span> <span class="mi">8</span> <span class="err">位</span>                                                                 <span class="err">|</span>
+<span class="err">|</span> <span class="err">exp</span>      <span class="err">|</span> <span class="err">unix</span> <span class="err">timestamp</span> <span class="err">|</span> <span class="err">该</span> <span class="err">jwt</span> <span class="err">token</span> <span class="err">的过期时间时间戳，建议比当前时间大</span> <span class="mi">3</span> <span class="err">到</span> <span class="mi">5</span> <span class="err">分钟，如果对安全要求高的可以缩小范围，不建议太大了。</span> <span class="err">|</span>
+
+<span class="err">###</span> <span class="err">server</span> <span class="err">端</span>
+
+<span class="err">验证</span> <span class="err">client</span> <span class="err">端发送的</span> <span class="err">HTTP</span> <span class="err">请求中</span> <span class="err">header</span> <span class="err">里面的</span> <span class="err">Authorization</span> <span class="err">字段内容是否为合法授权的</span> <span class="err">jwt</span> <span class="err">token。</span>
+
+<span class="err">###</span> <span class="err">举例</span>
+
+<span class="err">client</span> <span class="err">端发送一个请求给</span> <span class="err">server，并在其</span> <span class="err">http</span> <span class="err">header</span> <span class="err">中加上有效的</span> <span class="err">jwt</span> <span class="err">token：</span>
+
+<span class="err">```javascript</span>
+<span class="err">const</span> <span class="err">_</span> <span class="err">=</span> <span class="err">require(&#39;lodash&#39;);</span>
+<span class="err">const</span> <span class="err">jwt</span> <span class="err">=</span> <span class="err">require(&#39;jsonwebtoken&#39;);</span>
+<span class="err">const</span> <span class="err">request</span> <span class="err">=</span> <span class="err">require(&#39;request-promise-native&#39;);</span>
+
+<span class="err">const</span> <span class="err">url</span> <span class="err">=</span> <span class="err">&#39;http://service_url&#39;;</span> <span class="err">//</span> <span class="err">server端api的URL地址</span>
+<span class="err">const</span> <span class="err">clientId</span> <span class="err">=</span> <span class="err">&#39;xxxxxxxxx&#39;;</span>     <span class="err">//</span> <span class="err">授权处颁发的clientId</span>
+<span class="err">const</span> <span class="err">secretKey</span> <span class="err">=</span> <span class="err">&#39;xxxxx&#39;;</span>        <span class="err">//</span> <span class="err">授权处颁发的secretKey，注意保密</span>
+
+<span class="err">const</span> <span class="err">random</span> <span class="err">=</span> <span class="err">_.random(</span><span class="mi">1000000000</span><span class="err">,</span> <span class="mi">9999999999</span><span class="err">);</span>    <span class="err">//</span> <span class="err">随机数</span>
+<span class="err">const</span> <span class="err">exp</span> <span class="err">=</span> <span class="err">Date.now()</span> <span class="err">/</span> <span class="mi">1000</span> <span class="err">+</span> <span class="mi">180</span><span class="err">;</span>                 <span class="err">//</span> <span class="err">有效期</span><span class="mi">180</span><span class="err">秒</span>
+<span class="err">const</span> <span class="err">playload</span> <span class="err">=</span> <span class="p">{</span> <span class="err">clientId:</span> <span class="err">clientId,</span> <span class="err">rnd:</span> <span class="err">random,</span> <span class="err">exp:</span> <span class="err">exp</span> <span class="p">}</span><span class="err">;</span>    <span class="err">//</span> <span class="err">jwt</span> <span class="err">token的playload内容</span>
+
+<span class="err">const</span> <span class="err">parameters</span> <span class="err">=</span> <span class="p">{}</span><span class="err">;</span> <span class="err">//</span> <span class="err">接口请求参数内容</span>
+
+<span class="err">const</span> <span class="err">token</span> <span class="err">=</span> <span class="err">jwt.sign(playload,</span> <span class="err">secretKey);</span>    <span class="err">//</span> <span class="err">产生授权jwt</span> <span class="err">token</span>
+
+<span class="err">request.post(url,</span> <span class="p">{</span>
+    <span class="err">headers:</span> <span class="err">{</span> <span class="err">Authorization:</span> <span class="err">token</span> <span class="p">}</span><span class="err">,</span>         <span class="err">//</span> <span class="err">在client的http</span> <span class="err">header中设置Authorization字段，其值为前面产生的jwt</span> <span class="err">token</span>
+    <span class="err">body:</span> <span class="err">parameters,</span>
+    <span class="err">json:</span> <span class="kc">true</span><span class="err">,</span>
+<span class="err">}).then(function</span> <span class="err">()</span> <span class="p">{</span>
+    <span class="err">......</span>
+<span class="p">}</span><span class="err">);</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="接口通用说明-1">接口通用说明</h2>
+<h3 id="api根地址">API根地址：</h3>
+<p><code>https://v2.btc.top/user-api</code></p>
+<h3 id="返回格式-1">返回格式</h3>
+<p>返回内容统一为 JSON 格式，包括的字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>执行结果错误码，如果执行成功，为 0，否则为对应的错误码</td>
+</tr>
+<tr>
+<td>data</td>
+<td>any</td>
+<td>接口返回数据内容</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>错误信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="错误码说明-1">错误码说明</h3>
+<p>错误码对照表如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>执行成功</td>
+</tr>
+<tr>
+<td>5010</td>
+<td>输入内容无效</td>
+</tr>
+<tr>
+<td>5020</td>
+<td>用户身份验证失败</td>
+</tr>
+<tr>
+<td>5030</td>
+<td>操作失败</td>
+</tr>
+<tr>
+<td>5040</td>
+<td>权限不足</td>
+</tr>
+<tr>
+<td>5050</td>
+<td>系统错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="接口定义-1">接口定义</h2>
+<h3 id="收益-1">收益</h3>
+<h4 id="获取用户出账记录-1">获取用户出账记录。</h4>
+<p>方法: GET<br />
+接口路径: /profit/list</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+<tr>
+<td>coinType</td>
+<td>string</td>
+<td>是</td>
+<td>收益币种，可选值为：btc、bch</td>
+</tr>
+<tr>
+<td>startDay</td>
+<td>string</td>
+<td>是</td>
+<td>开始日期，格式为：2020-02-29</td>
+</tr>
+<tr>
+<td>endDay</td>
+<td>string</td>
+<td>是</td>
+<td>结束日期，格式为：2020-02-29</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>出账记录数组</td>
+</tr>
+</tbody>
+</table>
+<p>出账记录格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>day</td>
+<td>date</td>
+<td>出账日期</td>
+</tr>
+<tr>
+<td>total</td>
+<td>double</td>
+<td>当天总收益</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.94418618</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-02&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.96527115</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-03&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.96356307</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="获取用户历史付款记录-1">获取用户历史付款记录。</h4>
+<p>方法: GET<br />
+接口路径: /pay/list</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+<tr>
+<td>coinType</td>
+<td>string</td>
+<td>是</td>
+<td>收益币种，可选值为：btc、bch</td>
+</tr>
+<tr>
+<td>startDay</td>
+<td>string</td>
+<td>是</td>
+<td>开始日期，格式为：2020-02-29</td>
+</tr>
+<tr>
+<td>endDay</td>
+<td>string</td>
+<td>是</td>
+<td>结束日期，格式为：2020-02-29</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>付款记录数组</td>
+</tr>
+</tbody>
+</table>
+<p>付款记录格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>day</td>
+<td>date</td>
+<td>出账日期</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>double</td>
+<td>付款额</td>
+</tr>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>收款地址</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.94418618</span><span class="p">,</span> <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;coin-address-xxxx&#34;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-02&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.96527115</span><span class="p">,</span> <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;coin-address-xxxx&#34;</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;day&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-03&#34;</span><span class="p">,</span> <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.96356307</span><span class="p">,</span> <span class="nt">&#34;address&#34;</span><span class="p">:</span> <span class="s2">&#34;coin-address-xxxx&#34;</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="获取用户当天实时挖矿收益未包括网络手续费收益并且未扣除矿池费用获取-1">获取用户当天实时挖矿收益（未包括网络手续费收益并且未扣除矿池费用）获取。</h4>
+<p>方法: GET<br />
+接口路径: /profit/today</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+<tr>
+<td>coinType</td>
+<td>string</td>
+<td>是</td>
+<td>收益币种，可选值为：btc、bch</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>挖矿收益</td>
+</tr>
+</tbody>
+</table>
+<p>挖矿收益格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>total</td>
+<td>double</td>
+<td>总收益</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;total&#34;</span><span class="p">:</span> <span class="mf">0.28508561</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="算力-1">算力</h3>
+<h4 id="获取用户当前实时算力信息-1">获取用户当前实时算力信息。</h4>
+<p>方法: GET<br />
+接口路径: /speed/realtime</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>实时算力信息</td>
+</tr>
+</tbody>
+</table>
+<p>实时算力信息格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>speed5m</td>
+<td>object</td>
+<td>5 分钟算力</td>
+</tr>
+<tr>
+<td>speed10m</td>
+<td>object</td>
+<td>10 分钟算力</td>
+</tr>
+<tr>
+<td>speed30m</td>
+<td>object</td>
+<td>30 分钟算力</td>
+</tr>
+</tbody>
+</table>
+<p>算力格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>validSpeed</td>
+<td>int</td>
+<td>有效算力(H/s)</td>
+</tr>
+<tr>
+<td>rejectRate</td>
+<td>float</td>
+<td>拒绝率</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;speed5m&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24561271905291252</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.007</span> <span class="p">},</span>
+    <span class="nt">&#34;speed10m&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="nt">&#34;speed30m&#34;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="获取用户最近-24-小时算力-1">获取用户最近 24 小时算力</h4>
+<p>方法: GET<br />
+接口路径: /speed/hourly/24h</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>小时算力信息数组</td>
+</tr>
+</tbody>
+</table>
+<p>小时算力信息格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>at</td>
+<td>datetime</td>
+<td>时间(小时)</td>
+</tr>
+<tr>
+<td>validSpeed</td>
+<td>int</td>
+<td>有效算力(H/s)</td>
+</tr>
+<tr>
+<td>rejectRate</td>
+<td>float</td>
+<td>拒绝率</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 08:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24561271905291252</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.007</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 09:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 10:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 11:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 12:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 13:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 14:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 15:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01 16:00:00&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="获取用户最近-30-天日均算力-1">获取用户最近 30 天日均算力</h4>
+<p>方法: GET<br />
+接口路径: /speed/daily/30d</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>日均算力信息数组</td>
+</tr>
+</tbody>
+</table>
+<p>日均算力信息格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>at</td>
+<td>date</td>
+<td>时间(天)，注意一天的起止时间是：北京时间的早 8 点到第二天早 8 点。</td>
+</tr>
+<tr>
+<td>validSpeed</td>
+<td>int</td>
+<td>有效算力(H/s)</td>
+</tr>
+<tr>
+<td>rejectRate</td>
+<td>float</td>
+<td>拒绝率</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-01&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24561271905291252</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.007</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-02&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-03&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-04&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-05&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-06&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-07&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-08&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24388516638335084</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mf">0.001</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nt">&#34;at&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-09&#34;</span><span class="p">,</span> <span class="nt">&#34;validSpeed&#34;</span><span class="p">:</span> <span class="mi">24559043561725624</span><span class="p">,</span> <span class="nt">&#34;rejectRate&#34;</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="矿机-1">矿机</h3>
+<h4 id="获取用户当前矿机总体情况-1">获取用户当前矿机总体情况</h4>
+<p>方法: GET<br />
+接口路径: /worker/summary</p>
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>是否必须</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account</td>
+<td>否</td>
+<td>string</td>
+<td>子账户用户名，如果不传表示只用当前 key 关联的默认账户</td>
+</tr>
+</tbody>
+</table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>矿机总体情况</td>
+</tr>
+</tbody>
+</table>
+<p>矿机总体情况格式：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>running</td>
+<td>int</td>
+<td>运行中矿机数量。</td>
+</tr>
+<tr>
+<td>stopped</td>
+<td>int</td>
+<td>停机矿机数量</td>
+</tr>
+<tr>
+<td>invalid</td>
+<td>int</td>
+<td>失效矿机数量</td>
+</tr>
+</tbody>
+</table>
+<p>举例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
@@ -2738,6 +3635,36 @@
         <li><a href="#矿机">矿机</a>
           <ul>
             <li><a href="#获取用户当前矿机总体情况">获取用户当前矿机总体情况</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#接口通用说明-1">接口通用说明</a>
+      <ul>
+        <li><a href="#api根地址">API根地址：</a></li>
+        <li><a href="#返回格式-1">返回格式</a></li>
+        <li><a href="#错误码说明-1">错误码说明</a></li>
+      </ul>
+    </li>
+    <li><a href="#接口定义-1">接口定义</a>
+      <ul>
+        <li><a href="#收益-1">收益</a>
+          <ul>
+            <li><a href="#获取用户出账记录-1">获取用户出账记录。</a></li>
+            <li><a href="#获取用户历史付款记录-1">获取用户历史付款记录。</a></li>
+            <li><a href="#获取用户当天实时挖矿收益未包括网络手续费收益并且未扣除矿池费用获取-1">获取用户当天实时挖矿收益（未包括网络手续费收益并且未扣除矿池费用）获取。</a></li>
+          </ul>
+        </li>
+        <li><a href="#算力-1">算力</a>
+          <ul>
+            <li><a href="#获取用户当前实时算力信息-1">获取用户当前实时算力信息。</a></li>
+            <li><a href="#获取用户最近-24-小时算力-1">获取用户最近 24 小时算力</a></li>
+            <li><a href="#获取用户最近-30-天日均算力-1">获取用户最近 30 天日均算力</a></li>
+          </ul>
+        </li>
+        <li><a href="#矿机-1">矿机</a>
+          <ul>
+            <li><a href="#获取用户当前矿机总体情况-1">获取用户当前矿机总体情况</a></li>
             <li><a href="#获取用户矿机运行详情">获取用户矿机运行详情</a></li>
           </ul>
         </li>
