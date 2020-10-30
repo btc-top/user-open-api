@@ -133,6 +133,7 @@ request.post(url, {
 ####  6.1.1. <a name='获取用户出账记录。'></a>获取用户出账记录。
 
 方法: GET
+
 接口路径: /profit/list
 
 参数：
@@ -174,6 +175,7 @@ request.post(url, {
 ####  6.1.2. <a name='获取用户历史付款记录。'></a>获取用户历史付款记录。
 
 方法: GET
+
 接口路径: /pay/list
 
 参数：
@@ -216,6 +218,7 @@ request.post(url, {
 ####  6.1.3. <a name='获取用户当天实时挖矿收益（未包括网络手续费收益并且未扣除矿池费用）获取。'></a>获取用户当天实时挖矿收益（未包括网络手续费收益并且未扣除矿池费用）获取。
 
 方法: GET
+
 接口路径: /profit/today
 
 参数：
@@ -254,6 +257,7 @@ request.post(url, {
 ####  6.2.1. <a name='获取用户当前实时算力信息。'></a>获取用户当前实时算力信息。
 
 方法: GET
+
 接口路径: /speed/realtime
 
 参数：
@@ -300,6 +304,7 @@ request.post(url, {
 ####  6.2.2. <a name='获取用户最近-24-小时算力'></a>获取用户最近 24 小时算力
 
 方法: GET
+
 接口路径: /speed/hourly/24h
 
 参数：
@@ -345,6 +350,7 @@ request.post(url, {
 ####  6.2.3. <a name='获取用户最近-30-天日均算力'></a>获取用户最近 30 天日均算力
 
 方法: GET
+
 接口路径: /speed/daily/30d
 
 参数：
@@ -390,6 +396,7 @@ request.post(url, {
 ####  6.2.4. <a name='批量获取用户所有矿机的小时算力信息'></a>批量获取用户所有矿机的小时算力信息
 
 方法: GET
+
 接口路径: /speed/user-workers/hourly
 
 参数:
@@ -443,6 +450,7 @@ request.post(url, {
 ####  6.3.1. <a name='获取用户当前矿机总体情况'></a>获取用户当前矿机总体情况
 
 方法: GET
+
 接口路径: /worker/summary
 
 参数：
@@ -482,6 +490,7 @@ request.post(url, {
 ####  6.3.2. <a name='获取用户矿机运行详情'></a>获取用户矿机运行详情
 
 方法: GET
+
 接口路径: /worker/list
 
 参数：
@@ -550,6 +559,7 @@ request.post(url, {
 ####  6.4.1. <a name='获取用户收款设置'></a>获取用户收款设置
 
 方法: GET
+
 接口路径: /account/pay-setting
 
 参数：
@@ -588,6 +598,7 @@ request.post(url, {
 ####  6.4.2. <a name='获取用户所有子账户名'></a>获取用户所有子账户名
 
 方法: GET
+
 接口路径: /account/sub-account/list
 
 参数：
@@ -615,6 +626,7 @@ request.post(url, {
 ####  6.4.3. <a name='生成用户的观察链接'></a>生成用户的观察链接
 
 方法: POST
+
 接口路径: /observer/create
 
 参数：
