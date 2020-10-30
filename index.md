@@ -101,7 +101,7 @@ request.post(url, {
 
 ###  5.1. <a name='api-根地址：'></a>API 根地址：
 
-`https://v2.btc.top/user-api`
+请看您的API管理页面提示说明。
 
 ###  5.2. <a name='返回格式'></a>返回格式
 
