@@ -157,6 +157,8 @@ request.post(url, {
 | ----- | ------ | ---------- |
 | day   | date   | 出账日期   |
 | total | double | 当天总收益 |
+| netAvgFee | double | 当天网路手续费率 |
+| profitPerP | double | 当天每P收益 |
 
 举例：
 
@@ -165,9 +167,9 @@ request.post(url, {
   "code": 0,
   "message": null,
   "data": [
-    { "day": "2020-01-01", "total": 0.94418618 },
-    { "day": "2020-01-02", "total": 0.96527115 },
-    { "day": "2020-01-03", "total": 0.96356307 }
+    { "day": "2020-01-01", "total": 0.94418618, "netAvgFee": 0.0781, "profitPerP": 0.00123 },
+    { "day": "2020-01-02", "total": 0.96527115, "netAvgFee": 0.0762, "profitPerP": 0.00113 },
+    { "day": "2020-01-03", "total": 0.96356307, "netAvgFee": 0.0721, "profitPerP": 0.00133 }
   ]
 }
 ```
