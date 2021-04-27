@@ -33,7 +33,7 @@
 	numbering=true
 	autoSave=true
 	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->[TOC]
+<!-- /vscode-markdown-toc -->
 
 ##  1. <a name='请求方式'></a>请求方式
 
